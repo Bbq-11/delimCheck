@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
 import Usernames from '../pages/Usernames.vue';
 import Precheck from '../pages/Precheck.vue';
+import Result from '../pages/Result.vue';
 
 const routes = [
     {
@@ -19,11 +20,11 @@ const routes = [
         path: '/pre-check',
         component: Precheck,
     },
-    // {
-    //     name: 'Result',
-    //     path: '/result',
-    //     component: Result,
-    // },
+    {
+        name: 'Result',
+        path: '/result',
+        component: Result,
+    },
 ];
 
 export const router = createRouter({

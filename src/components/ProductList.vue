@@ -1,5 +1,7 @@
 <script setup>
-import { mdiBasketRemoveOutline } from '@mdi/js';
+// import { mdiBasketRemoveOutline } from '@mdi/js';
+// import UserListItem from './UserListItem.vue';
+import ProductListItem from './ProductListItem.vue';
 </script>
 
 <template>
@@ -14,15 +16,20 @@ import { mdiBasketRemoveOutline } from '@mdi/js';
         <!--        <v-card-text>-->
         <!--            <UserListItem v-for="us in 5" />-->
         <!--        </v-card-text>-->
-        <v-card-text class="d-flex justify-center align-center text-center fill-height">
-            <div>
-                <v-icon
-                    size="80"
-                    :icon="mdiBasketRemoveOutline"
-                />
-                <p>Ваша продуктовая корзина пуста..</p>
-            </div>
-        </v-card-text>
+        <!--        <v-card-text class="d-flex justify-center align-center text-center fill-height">-->
+        <!--            <div>-->
+        <!--                <v-icon-->
+        <!--                    size="80"-->
+        <!--                    :icon="mdiBasketRemoveOutline"-->
+        <!--                />-->
+        <!--                <p>Ваша продуктовая корзина пуста..</p>-->
+        <!--            </div>-->
+        <!--        </v-card-text>-->
+        <v-expansion-panels>
+            <v-expansion-panel v-for="usf in 2">
+                <ProductListItem />
+            </v-expansion-panel>
+        </v-expansion-panels>
     </v-card>
 </template>
 

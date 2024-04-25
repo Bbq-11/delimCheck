@@ -13,5 +13,5 @@
 
 <script setup>
 import UserList from '../components/UserList.vue';
-import CardDialog from '../components/CardDialog.vue';
+import CardDialog from '../components/DialogError.vue';
 </script>

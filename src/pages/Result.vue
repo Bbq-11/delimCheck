@@ -1,94 +1,81 @@
-<!--<script setup lang="ts">-->
-<!--import { onBeforeMount, ref } from 'vue';-->
-<!--import { useRouter } from 'vue-router';-->
-<!--import { useBillStore } from '../store/bill.js';-->
-<!--import { useProductStore } from '../store/products.js';-->
-<!--import { useUserStore } from '../store/userNames.js';-->
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-<!--const router = useRouter();-->
-<!--const billStore = useBillStore();-->
-<!--const userStore = useUserStore();-->
-<!--const productStore = useProductStore();-->
+const router = useRouter();
+const tab = ref('byDebtor');
+const handleReset = () => {
+    router.push('/');
+    // userStore.users = [];
+    // productStore.products = [];
+    // billStore.bill = [];
+};
+</script>
 
-<!--const tab = ref('byDebtor');-->
-
-<!--onBeforeMount(() => !billStore.bill.length && router.push('/users'));-->
-
-<!--billStore.calculateNormalizedBill();-->
-
-<!--const handleReset = () => {-->
-<!--    router.push('/');-->
-<!--    userStore.users = [];-->
-<!--    productStore.products = [];-->
-<!--    billStore.bill = [];-->
-<!--};-->
-<!--</script>-->
-
-<!--<template>-->
-<!--    <section class="d-flex flex-column ga-6">-->
-<!--        <div>-->
-<!--            <div class="text-h6 text-center mb-4">Результаты</div>-->
-<!--            <v-divider />-->
-<!--            <v-tabs-->
-<!--                v-model="tab"-->
-<!--                align-tabs="center"-->
-<!--                color="primary"-->
-<!--                class="mb-4"-->
-<!--            >-->
-<!--                <v-tab value="byDebtor">Кто - кому</v-tab>-->
-<!--                <v-tab value="byCreditor">Кому - кто</v-tab>-->
-<!--            </v-tabs>-->
-<!--            <v-window v-model="tab">-->
-<!--                <v-window-item value="byDebtor">-->
-<!--                    <div class="d-flex flex-column ga-5">-->
-<!--                        <div-->
-<!--                            v-for="billByDebtor in billStore.mappedByDebtor"-->
-<!--                            :key="billByDebtor.debtor.id"-->
-<!--                        >-->
-<!--                            <div class="text-primary font-weight-medium">-->
-<!--                                Пользователь {{ billByDebtor.debtor.name }} должен-->
-<!--                            </div>-->
-<!--                            <div v-if="!billByDebtor.creditors.length">А никому он ничего не должен!</div>-->
-<!--                            <div-->
-<!--                                v-for="billByCreditorDebtors in billByDebtor.creditors"-->
-<!--                                :key="billByCreditorDebtors.creditor.id"-->
-<!--                            >-->
-<!--                                {{ billByCreditorDebtors.creditor.name }} - {{ billByCreditorDebtors.bill }} ₽-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </v-window-item>-->
-<!--                <v-window-item value="byCreditor">-->
-<!--                    <div class="d-flex flex-column ga-5">-->
-<!--                        <div-->
-<!--                            v-for="billByCreditor in billStore.mappedByCreditor"-->
-<!--                            :key="billByCreditor.creditor.id"-->
-<!--                        >-->
-<!--                            <div class="text-primary font-weight-medium">-->
-<!--                                Пользователю-->
-<!--                                {{ billByCreditor.creditor.name }} должны-->
-<!--                            </div>-->
-<!--                            <div-->
-<!--                                v-for="billByCreditorDebtors in billByCreditor.debtors"-->
-<!--                                :key="billByCreditorDebtors.debtor.id"-->
-<!--                            >-->
-<!--                                {{ billByCreditorDebtors.debtor.name }} - {{ billByCreditorDebtors.bill }} ₽-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </v-window-item>-->
-<!--            </v-window>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <v-btn-->
-<!--                color="primary"-->
-<!--                rounded="xl"-->
-<!--                variant="tonal"-->
-<!--                class="w-100"-->
-<!--                @click="handleReset"-->
-<!--            >-->
-<!--                Вернуться домой-->
-<!--            </v-btn>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--</template>-->
+<template>
+    <v-sheet>
+        <v-tabs
+            v-model="tab"
+            align-tabs="center"
+            color="primary"
+            class="mb-4"
+            fixed-tabs
+        >
+            <v-tab value="byDebtor">Кто - кому</v-tab>
+            <v-tab value="byCreditor">Кому - кто</v-tab>
+        </v-tabs>
+        <v-window v-model="tab">
+            <v-window-item value="byDebtor">
+                <div class="d-flex flex-column ga-5">
+                    f
+                    <!--                    <div-->
+                    <!--                        v-for="billByDebtor in billStore.mappedByDebtor"-->
+                    <!--                        :key="billByDebtor.debtor.id"-->
+                    <!--                    >-->
+                    <!--                        <div class="text-primary font-weight-medium">-->
+                    <!--                            Пользователь {{ billByDebtor.debtor.name }} должен-->
+                    <!--                        </div>-->
+                    <!--                        <div v-if="!billByDebtor.creditors.length">А никому он ничего не должен!</div>-->
+                    <!--                        <div-->
+                    <!--                            v-for="billByCreditorDebtors in billByDebtor.creditors"-->
+                    <!--                            :key="billByCreditorDebtors.creditor.id"-->
+                    <!--                        >-->
+                    <!--                            {{ billByCreditorDebtors.creditor.name }} - {{ billByCreditorDebtors.bill }} ₽-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                </div>
+            </v-window-item>
+            <v-window-item value="byCreditor">
+                <div class="d-flex flex-column ga-5">
+                    b
+                    <!--                    <div-->
+                    <!--                        v-for="billByCreditor in billStore.mappedByCreditor"-->
+                    <!--                        :key="billByCreditor.creditor.id"-->
+                    <!--                    >-->
+                    <!--                        <div class="text-primary font-weight-medium">-->
+                    <!--                            Пользователю-->
+                    <!--                            {{ billByCreditor.creditor.name }} должны-->
+                    <!--                        </div>-->
+                    <!--                        <div-->
+                    <!--                            v-for="billByCreditorDebtors in billByCreditor.debtors"-->
+                    <!--                            :key="billByCreditorDebtors.debtor.id"-->
+                    <!--                        >-->
+                    <!--                            {{ billByCreditorDebtors.debtor.name }} - {{ billByCreditorDebtors.bill }} ₽-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                </div>
+            </v-window-item>
+        </v-window>
+    </v-sheet>
+    <div>
+        <v-btn
+            color="primary"
+            rounded="xl"
+            variant="tonal"
+            class="w-100"
+            @click="handleReset"
+        >
+            Вернуться домой
+        </v-btn>
+    </div>
+</template>
