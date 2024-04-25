@@ -1,26 +1,16 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-    <div>
-        <a href="https://vitejs.dev" target="_blank"> </a>
-        <a href="https://vuejs.org/" target="_blank"> </a>
-    </div>
-    <HelloWorld msg="Vite + Vue" />
+    <v-app>
+        <v-layout>
+            <v-app-bar
+                title="CheckDeli"
+                class="disable-user-select"
+            ></v-app-bar>
+            <v-main>
+                <v-container class="h-100 width-app">
+                    <router-view />
+                </v-container>
+            </v-main>
+        </v-layout>
+    </v-app>
 </template>
-
-<style scoped>
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script setup></script>

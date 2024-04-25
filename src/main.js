@@ -4,6 +4,7 @@ import vuetify from './plugins/vuetify';
 import { router } from './router/index.js';
 import App from './App.vue';
 import 'vuetify/styles';
+import './styles.scss';
 
 const app = createApp(App);
 const pinia = createPinia();

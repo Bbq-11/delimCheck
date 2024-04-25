@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Calculating from '../pages/Precheck.vue';
 import Home from '../pages/Home.vue';
-import Results from '../pages/Result.vue';
-import Users from '../pages/Usernames.vue';
+import Usernames from '../pages/Usernames.vue';
+import Precheck from '../pages/Precheck.vue';
 
 const routes = [
     {
@@ -13,18 +12,18 @@ const routes = [
     {
         name: 'Usernames',
         path: '/usernames',
-        component: Users,
+        component: Usernames,
     },
     {
-        name: 'Prechek',
-        path: '/precheck',
-        component: Calculating,
+        name: 'PreCheck',
+        path: '/pre-check',
+        component: Precheck,
     },
-    {
-        name: 'Result',
-        path: '/result',
-        component: Results,
-    },
+    // {
+    //     name: 'Result',
+    //     path: '/result',
+    //     component: Result,
+    // },
 ];
 
 export const router = createRouter({
