@@ -14,7 +14,11 @@ const handleReset = () => {
 </script>
 
 <template>
-    <v-sheet class="mb-6">
+    <v-sheet
+        class="mb-6"
+        elevation="10"
+        rounded="lg"
+    >
         <v-tabs
             v-model="tab"
             align-tabs="center"
@@ -31,16 +35,19 @@ const handleReset = () => {
                 elevation="20"
                 class="rounded-xl"
             >
-                <v-card class="text-center rounded-xl">
-                    <v-card-title> Пользователь Андрей должен </v-card-title>
-                    <v-card-text>
+                <v-card
+                    class="text-center rounded-xl text-primary"
+                    variant="text"
+                >
+                    <v-card-title class="text-h5 font-weight-bold"> Пользователь Андрей должен </v-card-title>
+                    <v-card-text class="text-subtitle-1 text-primary font-weight-bold">
                         <p>Илья - 12 ₽</p>
                         <div>
-                            <p>А никому он ничего не должен. Живет как хочет!</p>
                             <v-icon
                                 :icon="mdiDelete"
                                 size="80"
                             />
+                            <p>А никому он ничего не должен. Живет как хочет!</p>
                         </div>
                     </v-card-text>
                 </v-card>
@@ -58,14 +65,15 @@ const handleReset = () => {
             </v-window-item>
         </v-window>
     </v-sheet>
-    <div class="d-flex justify-center">
-        <v-btn
-            color="primary"
-            rounded="xl"
-            variant="tonal"
+    <router-link
+        to="/"
+        class="w-100"
+    >
+        <v-btn-primary
+            class="py-4 w-100"
+            elevation="10"
+            text="К результатам!"
             @click="handleReset"
-        >
-            Вернуться домой
-        </v-btn>
-    </div>
+        />
+    </router-link>
 </template>

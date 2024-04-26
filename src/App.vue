@@ -4,16 +4,18 @@
             <v-app-bar>
                 <v-spacer />
                 <v-btn
-                    rounded="xl"
-                    class="h-auto w-auto pa-3"
+                    class="h-auto w-auto rounded-xl pa-3"
+                    @click="toggleTheme"
                 >
                     <v-icon
-                        size="40"
-                        :icon="mdiWeatherSunsetDown"
-                    />
-                    <v-icon
+                        v-if="dark"
                         size="40"
                         :icon="mdiWeatherSunsetUp"
+                    />
+                    <v-icon
+                        v-else
+                        size="40"
+                        :icon="mdiWeatherSunsetDown"
                     />
                 </v-btn>
             </v-app-bar>
@@ -27,4 +29,13 @@
 </template>
 <script setup>
 import { mdiWeatherSunsetDown, mdiWeatherSunsetUp } from '@mdi/js';
+import { ref } from 'vue';
+import { useTheme } from 'vuetify';
+
+const theme = useTheme();
+const dark = ref(false);
+function toggleTheme() {
+    dark.value = !dark.value;
+    theme.global.name.value = dark.value ? 'dark' : 'light';
+}
 </script>

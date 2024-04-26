@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 // import { computed, ref } from 'vue';
 import { ref } from 'vue';
 import { mdiAllInclusive, mdiCheck, mdiContentCopy, mdiDelete } from '@mdi/js';
@@ -21,33 +21,15 @@ const rules = {
             class="gc-8"
             no-gutters
         >
-            <v-col
-                class=""
-                cols="7"
-            >
-                <v-text-field
-                    class="text-subtitle-1 text-primary"
-                    color="primary"
-                    label="Название"
-                    variant="outlined"
-                    density="compact"
-                    hide-details="auto"
-                ></v-text-field>
+            <v-col cols="7">
+                <v-text-field label="Название" />
             </v-col>
-            <v-col
-                class=""
-                cols="4"
-            >
+            <v-col cols="4">
                 <v-text-field
-                    class="text-subtitle-1 text-primary"
-                    color="primary"
                     label="Цена"
                     type="number"
-                    variant="outlined"
                     :rules="[rules.email]"
-                    density="compact"
-                    hide-details="auto"
-                ></v-text-field>
+                />
             </v-col>
         </v-row>
     </v-expansion-panel-title>
@@ -56,25 +38,18 @@ const rules = {
             class="mb-4 gc-4"
             no-gutters
         >
-            <v-col
-                class=""
-                cols="6"
-            >
+            <v-col cols="6">
                 <DialogPayer />
             </v-col>
-            <v-col class="">
-                <v-btn
-                    rounded="xl"
-                    width="100%"
-                >
+            <v-col>
+                <v-btn class="w-100 border-sm rounded-xl">
                     <v-icon :icon="mdiContentCopy" />
                 </v-btn>
             </v-col>
-            <v-col class="">
+            <v-col>
                 <v-btn
+                    class="w-100 border-sm rounded-xl"
                     color="error"
-                    rounded="xl"
-                    width="100%"
                 >
                     <v-icon :icon="mdiDelete" />
                 </v-btn>

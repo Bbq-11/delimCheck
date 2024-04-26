@@ -1,5 +1,5 @@
 <script setup>
-import { mdiAlertCircleOutline, mdiWalletOutline } from '@mdi/js';
+import { mdiMapMarkerQuestionOutline, mdiWalletOutline } from '@mdi/js';
 import { ref } from 'vue';
 
 const isActive = ref(false);
@@ -26,24 +26,25 @@ const users = ref([
 
 <template>
     <v-btn
-        class="text-subtitle-1 text-color-primary w-100"
+        class="text-subtitle-1 w-100 rounded-xl"
+        color="primary"
         :prepend-icon="mdiWalletOutline"
-        rounded="xl"
         @click="switchActive"
         text="Payer"
     />
     <template>
-        <v-dialog v-model="isActive">
+        <v-dialog
+            v-model="isActive"
+            max-width="400px"
+        >
             <v-card
+                class="text-center bg-error rounded-lg py-4 px-6"
                 elevation="20"
-                class="text-center"
             >
-                <div>
-                    <v-icon
-                        size="80"
-                        :icon="mdiAlertCircleOutline"
-                    />
-                </div>
+                <v-icon
+                    size="80"
+                    :icon="mdiMapMarkerQuestionOutline"
+                />
                 <v-card-text class="text-body-1">
                     <p>Кто оплачивает?</p>
                 </v-card-text>

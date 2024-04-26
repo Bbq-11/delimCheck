@@ -9,17 +9,13 @@
         to="/pre-check"
         class="w-100"
     >
-        <v-btn
-            elevation="4"
-            class="py-4 px-6 text-primary bg-surface-variant"
-            border="sm"
-            rounded="xl"
-            height="auto"
-            width="100%"
+        <v-btn-primary
+            class="w-100 py-4"
+            elevation="10"
             text="Дальше!"
         />
     </router-link>
-    <!--        <CardDialog text="Добавьте еще кого-нибудь!" />-->
+    <!--    <CardDialog text="Добавьте еще кого-нибудь!" />-->
     <!--        <CardDialog text="Стоить дать всем имена!" />-->
 </template>
 

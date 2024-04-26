@@ -17,14 +17,7 @@ const avatar = computed(() => username.value.charAt(0));
                 </v-avatar>
             </v-col>
             <v-col>
-                <v-text-field
-                    v-model="username"
-                    variant="outlined"
-                    hide-details="auto"
-                    color="background"
-                    density="compact"
-                    class="text-subtitle-1 text-primary"
-                />
+                <v-text-field v-model="username" />
             </v-col>
             <v-col cols="auto">
                 <v-btn

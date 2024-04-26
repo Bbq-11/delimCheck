@@ -1,8 +1,24 @@
 import { createVuetify } from 'vuetify';
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
 import colors from 'vuetify/util/colors';
+import { VBtn } from 'vuetify/components';
 
 export default createVuetify({
+    aliases: {
+        VBtnPrimary: VBtn,
+    },
+    defaults: {
+        VBtnPrimary: {
+            class: ['text-primary', 'bg-background', 'h-auto', 'border-sm', 'rounded-xl'],
+        },
+        VTextField: {
+            variant: 'outlined',
+            hideDetails: 'auto',
+            color: 'primary',
+            density: 'compact',
+            class: ['text-subtitle-1', 'text-primary'],
+        },
+    },
     theme: {
         defaultTheme: 'light',
         themes: {
@@ -11,42 +27,24 @@ export default createVuetify({
                 colors: {
                     background: colors.lightGreen.lighten4,
                     surface: colors.lightGreen.lighten5,
-                    // 'surface-bright': '#FFFFFF',
-                    'surface-variant': colors.lightGreen.lighten3,
-                    // 'on-surface-variant': '#EEEEEE',
-                    //
+                    surfaceVariant: colors.lightGreen.lighten3,
                     primary: '#263b26',
-                    'primary-darken-1': '#1F5592',
-                    secondary: '#48A9A6',
-                    'secondary-darken-1': '#018786',
+                    secondary: '#1a281a',
                     // accent
                     //
-                    error: colors.orange.darken1,
-                    errorLight: colors.orange.lighten5,
-                    info: '#2196F3',
-                    success: '#4CAF50',
-                    warning: '#FB8C00',
+                    error: colors.orange.lighten2,
                 },
             },
             dark: {
+                dark: true,
                 colors: {
-                    background: '#1a281a',
-                    surface: '#263b26',
-                    'surface-bright': '#FFFFFF',
-                    'surface-light': '#EEEEEE',
-                    'surface-variant': '#424242',
-                    'on-surface-variant': '#EEEEEE',
-                    //
+                    background: '#131e13',
+                    surface: '#1c2d1c',
+                    // surface: '#203120',
                     primary: colors.lightGreen.lighten4,
-                    'primary-darken-1': '#1F5592',
-                    secondary: '#48A9A6',
-                    'secondary-darken-1': '#018786',
-                    // accent
-                    //
-                    error: '#B00020',
-                    info: '#2196F3',
-                    success: '#4CAF50',
-                    warning: '#FB8C00',
+                    secondary: colors.lightGreen.lighten5,
+                    'surface-variant': colors.lightGreen.lighten1,
+                    error: colors.orange.darken4,
                 },
             },
         },

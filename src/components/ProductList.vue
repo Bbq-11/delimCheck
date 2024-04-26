@@ -6,18 +6,15 @@ import { mdiPlusCircleOutline } from '@mdi/js';
 
 <template>
     <div class="border-b-sm d-flex justify-space-around py-4 mb-2">
-        <v-btn
-            class="py-2 px-5 text-primary bg-surface-variant text-primary"
-            border="sm"
-            rounded="xl"
-            height="auto"
+        <v-btn-primary
+            class="py-2 px-5"
             :prepend-icon="mdiPlusCircleOutline"
             text="Добавить позицию!"
         />
     </div>
     <v-card
         :height="600"
-        :variant="'text'"
+        variant="text"
         class="overflow-y-auto"
     >
         <!--        <v-card-text class="d-flex justify-center align-center text-center fill-height">-->

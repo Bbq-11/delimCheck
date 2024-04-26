@@ -9,18 +9,16 @@ import CardDialog from '../components/DialogError.vue';
     >
         <ProductList />
     </v-sheet>
-    <!--    <router-link-->
-    <!--        to="/result"-->
-    <!--        class="w-100"-->
-    <!--    >-->
-    <!--        <v-btn-->
-    <!--            class="py-4 px-6 text-primary bg-surface-variant w-100"-->
-    <!--            border="sm"-->
-    <!--            rounded="xl"-->
-    <!--            height="auto"-->
-    <!--            text="К результатам!"-->
-    <!--        />-->
-    <!--    </router-link>-->
+    <router-link
+        to="/result"
+        class="w-100"
+    >
+        <v-btn-primary
+            class="py-4 w-100"
+            elevation="10"
+            text="К результатам!"
+        />
+    </router-link>
     <CardDialog text="Добавьте что-нибудь!" />
     <!--    <CardDialog text="Назовите все продукты!" />-->
     <!--    <CardDialog text="Введите стоимость!" />-->

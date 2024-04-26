@@ -18,15 +18,10 @@
             </v-card-item>
             <v-card-actions class="justify-center">
                 <router-link to="/usernames">
-                    <v-btn
-                        elevation="10"
-                        class="py-4 px-6 text-primary bg-surface-variant"
-                        border="sm"
-                        rounded="xl"
-                        height="auto"
+                    <v-btn-primary
+                        class="py-4 px-6"
                         text="Начать"
-                    >
-                    </v-btn>
+                    />
                 </router-link>
             </v-card-actions>
         </v-card>
