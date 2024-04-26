@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { mdiAlertCircleOutline } from '@mdi/js';
+import { mdiAlertCircle } from '@mdi/js';
 
 defineProps({
     text: String,
@@ -18,9 +18,13 @@ const switchOpen = () => {
 
 <template>
     <v-btn
+        class="py-4 px-6 text-primary bg-surface w-100"
+        border="sm"
+        variant="plain"
+        rounded="xl"
+        height="auto"
+        text="Дальше!"
         :disabled="isOpen"
-        color="primary"
-        text="Дальше"
         @click="switchOpen()"
     ></v-btn>
 
@@ -32,15 +36,16 @@ const switchOpen = () => {
         >
             <v-card
                 elevation="20"
-                class="text-center"
+                class="text-center bg-error py-4 px-6"
+                rounded="lg"
             >
                 <div>
                     <v-icon
                         size="80"
-                        :icon="mdiAlertCircleOutline"
+                        :icon="mdiAlertCircle"
                     />
                 </div>
-                <v-card-text class="text-body-1">
+                <v-card-text class="text-body-1 text-surface">
                     {{ text }}
                 </v-card-text>
             </v-card>

@@ -26,8 +26,10 @@ const rules = {
                 cols="7"
             >
                 <v-text-field
-                    class=""
+                    class="text-subtitle-1 text-primary"
+                    color="primary"
                     label="Название"
+                    variant="outlined"
                     density="compact"
                     hide-details="auto"
                 ></v-text-field>
@@ -37,8 +39,11 @@ const rules = {
                 cols="4"
             >
                 <v-text-field
+                    class="text-subtitle-1 text-primary"
+                    color="primary"
                     label="Цена"
                     type="number"
+                    variant="outlined"
                     :rules="[rules.email]"
                     density="compact"
                     hide-details="auto"
@@ -60,7 +65,6 @@ const rules = {
             <v-col class="">
                 <v-btn
                     rounded="xl"
-                    variant="tonal"
                     width="100%"
                 >
                     <v-icon :icon="mdiContentCopy" />
@@ -68,9 +72,8 @@ const rules = {
             </v-col>
             <v-col class="">
                 <v-btn
-                    color="accent"
+                    color="error"
                     rounded="xl"
-                    variant="tonal"
                     width="100%"
                 >
                     <v-icon :icon="mdiDelete" />

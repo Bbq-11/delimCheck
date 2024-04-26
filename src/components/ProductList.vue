@@ -1,28 +1,35 @@
 <script setup>
-// import { mdiBasketRemoveOutline } from '@mdi/js';
-// import UserListItem from './UserListItem.vue';
+// import { mdiDeleteEmptyOutline } from '@mdi/js';
 import ProductListItem from './ProductListItem.vue';
+import { mdiPlusCircleOutline } from '@mdi/js';
 </script>
 
 <template>
-    <div class="border-b-xl d-flex justify-space-around py-4">
-        <v-btn> Добавить позицию! </v-btn>
+    <div class="border-b-sm d-flex justify-space-around py-4 mb-2">
+        <v-btn
+            class="py-2 px-5 text-primary bg-surface-variant text-primary"
+            border="sm"
+            rounded="xl"
+            height="auto"
+            :prepend-icon="mdiPlusCircleOutline"
+            text="Добавить позицию!"
+        />
     </div>
     <v-card
         :height="600"
         :variant="'text'"
-        class="overflow-y-auto overflow-x-auto"
+        class="overflow-y-auto"
     >
-        <!--        <v-card-text>-->
-        <!--            <UserListItem v-for="us in 5" />-->
-        <!--        </v-card-text>-->
         <!--        <v-card-text class="d-flex justify-center align-center text-center fill-height">-->
         <!--            <div>-->
         <!--                <v-icon-->
+        <!--                    color="primary"-->
         <!--                    size="80"-->
-        <!--                    :icon="mdiBasketRemoveOutline"-->
+        <!--                    :icon="mdiDeleteEmptyOutline"-->
         <!--                />-->
-        <!--                <p>Ваша продуктовая корзина пуста..</p>-->
+        <!--                <div class="text-subtitle-1 text-primary">-->
+        <!--                    <p>Ваша продуктовая корзина пуста..</p>-->
+        <!--                </div>-->
         <!--            </div>-->
         <!--        </v-card-text>-->
         <v-expansion-panels>

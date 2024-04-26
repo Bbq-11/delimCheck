@@ -26,14 +26,12 @@ const users = ref([
 
 <template>
     <v-btn
+        class="text-subtitle-1 text-color-primary w-100"
         :prepend-icon="mdiWalletOutline"
         rounded="xl"
-        variant="tonal"
-        class="w-100"
         @click="switchActive"
-    >
-        PPayer
-    </v-btn>
+        text="Payer"
+    />
     <template>
         <v-dialog v-model="isActive">
             <v-card
