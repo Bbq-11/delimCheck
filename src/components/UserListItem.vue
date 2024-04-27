@@ -1,29 +1,36 @@
 <script setup>
-import { computed, ref } from 'vue';
 import { mdiClose } from '@mdi/js';
+import { useUserStore } from '../stores/UserStore.js';
 
-const username = ref('');
-const avatar = computed(() => username.value.charAt(0));
+const userStore = useUserStore();
+const modelValue = defineModel();
+const props = defineProps({
+    user: {
+        type: Number,
+        required: true,
+    },
+});
 </script>
 
 <template>
     <v-container>
         <v-row class="align-center">
             <v-col cols="auto">
-                <v-avatar color="background">
+                <v-avatar class="bg-background">
                     <span class="text-h5 text-uppercase font-weight-bold text-primary">
-                        {{ avatar }}
+                        {{ modelValue.charAt(0).toUpperCase() }}
                     </span>
                 </v-avatar>
             </v-col>
             <v-col>
-                <v-text-field v-model="username" />
+                <v-text-field v-model="modelValue" />
             </v-col>
             <v-col cols="auto">
                 <v-btn
                     :icon="mdiClose"
                     color="error"
                     variant="tonal"
+                    @click="userStore.removeUser(props.user)"
                 />
             </v-col>
         </v-row>

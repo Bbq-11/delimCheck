@@ -15,7 +15,7 @@ import { mdiPlusCircleOutline } from '@mdi/js';
     <v-card
         :height="600"
         variant="text"
-        class="overflow-y-auto"
+        class="overflow-y-auto scroll-container mr-1 mb-1"
     >
         <!--        <v-card-text class="d-flex justify-center align-center text-center fill-height">-->
         <!--            <div>-->
@@ -30,7 +30,7 @@ import { mdiPlusCircleOutline } from '@mdi/js';
         <!--            </div>-->
         <!--        </v-card-text>-->
         <v-expansion-panels>
-            <v-expansion-panel v-for="usf in 2">
+            <v-expansion-panel v-for="usf in 12">
                 <ProductListItem />
             </v-expansion-panel>
         </v-expansion-panels>

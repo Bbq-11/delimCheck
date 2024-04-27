@@ -1,7 +1,7 @@
 <script setup>
 // import { computed, ref } from 'vue';
 import { ref } from 'vue';
-import { mdiAllInclusive, mdiCheck, mdiContentCopy, mdiDelete } from '@mdi/js';
+import { mdiAllInclusive, mdiContentCopy, mdiDeleteOutline } from '@mdi/js';
 import DialogPayer from './DialogPayer.vue';
 // const username = ref('');
 // const avatar = computed(() => username.value.charAt(0));
@@ -51,7 +51,7 @@ const rules = {
                     class="w-100 border-sm rounded-xl"
                     color="error"
                 >
-                    <v-icon :icon="mdiDelete" />
+                    <v-icon :icon="mdiDeleteOutline" />
                 </v-btn>
             </v-col>
         </v-row>
@@ -60,31 +60,25 @@ const rules = {
             justify="space-around"
             no-gutters
         >
-            <v-col
-                v-for="us in 3"
-                cols=""
-            >
+            <v-col v-for="us in 3">
                 <div class="cursor-pointer">
                     <div class="d-flex flex-column align-center border-sm pa-2 rounded-lg ga-1">
                         <v-avatar color="surface-variant">
-                            <div class="d-flex w-100 h-100 justify-center align-center">
-                                <template v-if="isUser">
-                                    <v-icon
-                                        v-if="isProduct"
-                                        :icon="mdiCheck"
-                                    />
-                                    <span
-                                        v-else
-                                        class="text-uppercase"
-                                    >
-                                        U
-                                        <!--                                                {{ user.name.charAt(0) }}-->
-                                    </span>
-                                </template>
-                                <v-icon
-                                    v-else
-                                    :icon="mdiAllInclusive"
-                                />
+                            <div class="d-flex w-100 h-100 justify-center align-center bg-primary">
+                                <!--                                <template v-if="isUser">-->
+                                <!--                                    <v-icon-->
+                                <!--                                        v-if="isProduct"-->
+                                <!--                                        :icon="mdiCheck"-->
+                                <!--                                    />-->
+                                <!--                                    <span-->
+                                <!--                                        v-else-->
+                                <!--                                        class="text-uppercase"-->
+                                <!--                                    >-->
+                                <!--                                        U-->
+                                <!--                                        &lt;!&ndash;                                                {{ user.name.charAt(0) }}&ndash;&gt;-->
+                                <!--                                    </span>-->
+                                <!--                                </template>-->
+                                <v-icon :icon="mdiAllInclusive" />
                             </div>
                         </v-avatar>
                         <div class="text-subtitle-2">

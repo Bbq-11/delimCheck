@@ -38,18 +38,21 @@ const users = ref([
             max-width="400px"
         >
             <v-card
-                class="text-center bg-error rounded-lg py-4 px-6"
+                class="text-center bg-error text-primary rounded-lg py-4 px-6"
                 elevation="20"
             >
-                <v-icon
-                    size="80"
-                    :icon="mdiMapMarkerQuestionOutline"
-                />
+                <div>
+                    <v-icon
+                        size="80"
+                        color="primary"
+                        :icon="mdiMapMarkerQuestionOutline"
+                    />
+                </div>
                 <v-card-text class="text-body-1">
                     <p>Кто оплачивает?</p>
                 </v-card-text>
                 <v-card-actions>
-                    <v-radio-group hide-details="auto">
+                    <v-radio-group>
                         <v-radio
                             v-for="user in users"
                             :key="user.id"

@@ -1,6 +1,9 @@
 <script setup>
 import { mdiAutorenew, mdiPlusCircleOutline } from '@mdi/js';
 import UserListItem from './UserListItem.vue';
+import { useUserStore } from '../stores/UserStore.js';
+
+const userStore = useUserStore();
 </script>
 
 <template>
@@ -9,17 +12,26 @@ import UserListItem from './UserListItem.vue';
             class="py-2 px-5"
             :prepend-icon="mdiPlusCircleOutline"
             text="Добавить человека!"
+            @click="userStore.addUser()"
         />
     </div>
     <v-card
-        :height="350"
+        class="scroll-container overflow-y-auto mb-1 mr-1"
+        height="350"
         variant="text"
-        class="overflow-y-auto scroll-container mb-1 mr-1"
     >
-        <v-card-text>
-            <UserListItem v-for="us in 5" />
+        <v-card-text v-if="userStore.totalCountUsers">
+            <UserListItem
+                v-for="user in userStore.users"
+                :key="user.id"
+                :user="user.id"
+                v-model="user.username"
+            />
         </v-card-text>
-        <v-card-text class="d-flex justify-center align-center text-center fill-height">
+        <v-card-text
+            v-else
+            class="d-flex justify-center align-center text-center fill-height"
+        >
             <div>
                 <v-icon
                     size="80"

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { mdiDelete } from '@mdi/js';
+import { mdiThumbUpOutline } from '@mdi/js';
 
 const router = useRouter();
 const tab = ref('byDebtor');
@@ -23,7 +23,7 @@ const handleReset = () => {
             v-model="tab"
             align-tabs="center"
             color="primary"
-            class="mb-6"
+            class="border-b-sm mb-6"
             fixed-tabs
         >
             <v-tab value="1">Кто - кому</v-tab>
@@ -33,32 +33,40 @@ const handleReset = () => {
             <v-window-item
                 value="1"
                 elevation="20"
-                class="rounded-xl"
+                class="mb-8"
             >
                 <v-card
-                    class="text-center rounded-xl text-primary"
+                    v-for="f in 3"
+                    class="text-center text-primary mx-auto mt-2 border-b-sm"
                     variant="text"
+                    max-width="600px"
                 >
                     <v-card-title class="text-h5 font-weight-bold"> Пользователь Андрей должен </v-card-title>
                     <v-card-text class="text-subtitle-1 text-primary font-weight-bold">
                         <p>Илья - 12 ₽</p>
                         <div>
                             <v-icon
-                                :icon="mdiDelete"
-                                size="80"
+                                :icon="mdiThumbUpOutline"
+                                size="40"
                             />
                             <p>А никому он ничего не должен. Живет как хочет!</p>
                         </div>
                     </v-card-text>
                 </v-card>
             </v-window-item>
-            <v-window-item value="2">
+            <v-window-item
+                value="2"
+                elevation="20"
+                class="mb-8"
+            >
                 <v-card
                     v-for="f in 3"
-                    class="text-center bg-pink-accent-2 rounded-xl mb-6"
+                    class="text-center text-primary mx-auto mt-2 border-b-sm"
+                    variant="text"
+                    max-width="600px"
                 >
-                    <v-card-title> Пользователю Андрей должны </v-card-title>
-                    <v-card-text>
+                    <v-card-title class="text-h5 font-weight-bold"> Пользователю Андрей должны </v-card-title>
+                    <v-card-text class="text-subtitle-1 text-primary font-weight-bold">
                         <p>Илья - 12 ₽</p>
                     </v-card-text>
                 </v-card>

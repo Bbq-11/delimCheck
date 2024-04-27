@@ -9,6 +9,14 @@ import CardDialog from '../components/DialogError.vue';
     >
         <ProductList />
     </v-sheet>
+    <v-card
+        color="background"
+        elevation="10"
+        class="rounded-xl mb-4 text-center text-primary"
+    >
+        <v-card-title class="text-subtitle-1 font-weight-bold"> Промежуточный счет: </v-card-title>
+        <v-card-text class="text-h5 text-primary font-weight-bold"> 24 ₽ </v-card-text>
+    </v-card>
     <router-link
         to="/result"
         class="w-100"

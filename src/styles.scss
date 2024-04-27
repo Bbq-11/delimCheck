@@ -42,6 +42,9 @@ a{
   font-family: $fontFamily !important;
 }
 
+.v-card:last-child{
+  border-bottom-width: 0!important;
+}
 
 .width-app{
   max-width: 800px;
