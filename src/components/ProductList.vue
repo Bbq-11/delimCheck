@@ -1,7 +1,10 @@
 <script setup>
-// import { mdiDeleteEmptyOutline } from '@mdi/js';
+import { mdiDeleteEmptyOutline, mdiPlusCircleOutline } from '@mdi/js';
 import ProductListItem from './ProductListItem.vue';
-import { mdiPlusCircleOutline } from '@mdi/js';
+
+import { useProductStore } from '../stores/ProductStore.js';
+
+const productStore = useProductStore();
 </script>
 
 <template>
@@ -10,6 +13,7 @@ import { mdiPlusCircleOutline } from '@mdi/js';
             class="py-2 px-5"
             :prepend-icon="mdiPlusCircleOutline"
             text="Добавить позицию!"
+            @click="productStore.addProduct()"
         />
     </div>
     <v-card
@@ -17,23 +21,31 @@ import { mdiPlusCircleOutline } from '@mdi/js';
         variant="text"
         class="overflow-y-auto scroll-container mr-1 mb-1"
     >
-        <!--        <v-card-text class="d-flex justify-center align-center text-center fill-height">-->
-        <!--            <div>-->
-        <!--                <v-icon-->
-        <!--                    color="primary"-->
-        <!--                    size="80"-->
-        <!--                    :icon="mdiDeleteEmptyOutline"-->
-        <!--                />-->
-        <!--                <div class="text-subtitle-1 text-primary">-->
-        <!--                    <p>Ваша продуктовая корзина пуста..</p>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </v-card-text>-->
-        <v-expansion-panels>
-            <v-expansion-panel v-for="usf in 12">
-                <ProductListItem />
-            </v-expansion-panel>
+        <v-expansion-panels v-if="productStore.totalCountProducts">
+            <ProductListItem
+                v-for="product in productStore.products"
+                :key="product.id"
+                :product="product"
+                v-model:title="product.title"
+                v-model:price="product.price"
+                v-model:payer="product.payer"
+            />
         </v-expansion-panels>
+        <v-card-text
+            v-else
+            class="d-flex justify-center align-center text-center fill-height"
+        >
+            <div>
+                <v-icon
+                    color="primary"
+                    size="80"
+                    :icon="mdiDeleteEmptyOutline"
+                />
+                <div class="text-subtitle-1 text-primary">
+                    <p>Ваша продуктовая корзина пуста..</p>
+                </div>
+            </div>
+        </v-card-text>
     </v-card>
 </template>
 

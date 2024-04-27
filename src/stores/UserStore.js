@@ -5,11 +5,11 @@ export const useUserStore = defineStore('userStore', () => {
     const users = ref([
         {
             id: 1,
-            username: 'admin1',
+            username: 'Илья',
         },
         {
             id: 2,
-            username: 'admin2',
+            username: 'Егор',
         },
     ]);
 
@@ -17,7 +17,12 @@ export const useUserStore = defineStore('userStore', () => {
         return users.value.length;
     });
     const checkDataUsers = computed(() => {
-        return users.value.find((item) => item.username.length === 0);
+        return users.value.find((item) => !item.username.length);
+        // if (empty) return empty;
+        // const names = [];
+        // users.value.forEach((item) => names.push(item.username));
+        // const uniqueNames = new Set(names);
+        // return uniqueNames.size !== users.value.length;
     });
 
     const addUser = () => {

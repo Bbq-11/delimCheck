@@ -25,7 +25,7 @@ const userStore = useUserStore();
                 v-for="user in userStore.users"
                 :key="user.id"
                 :user="user.id"
-                v-model="user.username"
+                v-model.trim="user.username"
             />
         </v-card-text>
         <v-card-text
