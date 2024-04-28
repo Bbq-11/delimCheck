@@ -39,7 +39,7 @@ a {
 }
 
 .v-card:last-child {
-  border-bottom-width: 0 !important;
+  border-bottom: none !important;
 }
 
 .width-app {
@@ -55,6 +55,10 @@ a {
   text-decoration: none;
   font: inherit;
   color: inherit;
+}
+
+.v-container {
+  padding: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

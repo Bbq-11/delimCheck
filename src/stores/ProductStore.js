@@ -20,19 +20,15 @@ export const useProductStore = defineStore('productStore', () => {
         },
     ]);
 
-    const getItems = computed(() => {
-        return products.findIndex((item) => item.id === this.id);
-    });
-
     const totalCountProducts = computed(() => products.value.length);
     const checkDataTitles = computed(
-        () => !products.value.find((item) => !item.title.length),
+        () => !products.value.find((item) => item.title.length === 0),
     );
     const checkDataPrices = computed(
-        () => !products.value.find((item) => !item.price.length),
+        () => !products.value.find((item) => item.price.length === 0),
     );
     const checkDataUsers = computed(
-        () => !products.value.find((item) => !item.users.length),
+        () => !products.value.find((item) => item.users.length === 0),
     );
 
     const subtotal = computed(() => {
@@ -61,8 +57,11 @@ export const useProductStore = defineStore('productStore', () => {
         };
         products.value.push(newItem);
     };
+    const getItem = (id) => {
+        return products.value.find((item) => item.id === id);
+    };
     return {
-        getItems,
+        getItem,
         products,
         useProductStore,
         addProduct,

@@ -6,7 +6,7 @@ import { useProductStore } from '../stores/ProductStore.js';
 import { useUserStore } from '../stores/UserStore.js';
 
 const productStore = useProductStore();
-const UserStore = useUserStore();
+const userStore = useUserStore();
 
 const payer = defineModel('payer');
 
@@ -27,36 +27,63 @@ const switchActive = () => (isActive.value = !isActive.value);
         color="primary"
         :prepend-icon="mdiWalletOutline"
         @click="switchActive"
-    >
-        {{ productStore.products[props.product.id - 1] }}
-    </v-btn>
+        :text="props.product.payer"
+    />
     <template>
         <v-dialog
             v-model="isActive"
             max-width="400px"
         >
             <v-card
-                class="text-center bg-error text-primary rounded-lg py-4 px-6"
+                class="text-center bg-error text-primary rounded-lg pa-4"
                 elevation="20"
             >
                 <div>
                     <v-icon
-                        size="80"
+                        size="100"
                         color="primary"
                         :icon="mdiMapMarkerQuestionOutline"
                     />
                 </div>
-                <v-card-text class="text-body-1">
-                    <p>Кто оплачивает?</p>
+                <v-card-text class="text-h5 mb-2">
+                    <span>Кто оплачивает?</span>
                 </v-card-text>
                 <v-card-actions>
                     <v-radio-group v-model="payer">
-                        <v-radio
-                            v-for="user in UserStore.users"
+                        <label
+                            class="d-flex align-center justify-space-between mb-3"
+                            v-for="user in userStore.users"
                             :key="user.id"
-                            :label="user.username"
-                            :value="user.username"
-                        />
+                        >
+                            <v-container>
+                                <v-row
+                                    align="center"
+                                    no-gutters
+                                >
+                                    <v-col cols="auto">
+                                        <v-avatar
+                                            class="text-h5 text-uppercase font-weight-bold text-primary bg-background mr-3"
+                                        >
+                                            {{ user.username.charAt(0).toUpperCase() }}
+                                        </v-avatar>
+                                    </v-col>
+                                    <v-col
+                                        cols="auto"
+                                        class="subtitle-1 font-weight-bold text-primary"
+                                    >
+                                        {{ user.username }}
+                                    </v-col>
+                                    <v-spacer />
+                                    <v-col cols="auto">
+                                        <v-radio
+                                            :value="user.username"
+                                            @click="switchActive"
+                                        >
+                                        </v-radio>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+                        </label>
                     </v-radio-group>
                 </v-card-actions>
             </v-card>

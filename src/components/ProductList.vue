@@ -28,7 +28,6 @@ const productStore = useProductStore();
                 :product="product"
                 v-model:title="product.title"
                 v-model:price="product.price"
-                v-model:payer="product.payer"
             />
         </v-expansion-panels>
         <v-card-text
