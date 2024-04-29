@@ -22,7 +22,6 @@ html{
   }
 }
 
-
 ul, ol{
   list-style: none;
 }
@@ -53,6 +52,9 @@ a{
   user-select: none;
 }
 .v-btn{
+  transition: 11300ms ease;
+  transition-property: background-color;
+  transition-duration: 3s;
   padding: 0;
   text-decoration: none;
   font: inherit;

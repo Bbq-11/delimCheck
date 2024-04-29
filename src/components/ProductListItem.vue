@@ -95,6 +95,7 @@ const rules = {
                     :key="user.id"
                     :product="props.product"
                     :user="user"
+                    @click="productStore.addUserProduct(props.product.id, user.id)"
                 />
                 <!--                <v-col v-for="us in 3">-->
                 <!--                    <div class="cursor-pointer">-->

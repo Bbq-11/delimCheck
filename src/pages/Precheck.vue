@@ -8,7 +8,7 @@ const productStore = useProductStore();
 </script>
 <template>
     <v-sheet
-        class="rounded-lg border border-gray-200 mb-6"
+        class="rounded-lg border border-gray-200 mt-12 mb-6"
         elevation="10"
     >
         <ProductList />
@@ -24,36 +24,38 @@ const productStore = useProductStore();
             {{ productStore.subtotal }}
         </v-card-text>
     </v-card>
-    <router-link
-        v-if="
-            productStore.totalCountProducts &&
-            productStore.checkDataTitles &&
-            productStore.checkDataPrices &&
-            productStore.checkDataUsers
-        "
-        to="/result"
-        class="w-100"
-    >
-        <v-btn-primary
-            class="py-4 w-100"
-            elevation="10"
-            text="К результатам!"
+    <div class="mb-6">
+        <router-link
+            v-if="
+                productStore.totalCountProducts &&
+                productStore.checkDataTitles &&
+                productStore.checkDataPrices &&
+                productStore.checkDataUsers
+            "
+            to="/result"
+            class="w-100"
+        >
+            <v-btn-primary
+                class="py-4 w-100"
+                elevation="10"
+                text="К результатам!"
+            />
+        </router-link>
+        <CardDialog
+            v-else-if="!productStore.totalCountProducts"
+            text="Добавьте что-нибудь!"
         />
-    </router-link>
-    <CardDialog
-        v-else-if="!productStore.totalCountProducts"
-        text="Добавьте что-нибудь!"
-    />
-    <CardDialog
-        v-else-if="!productStore.checkDataTitles"
-        text="Назовите все продукты!"
-    />
-    <CardDialog
-        v-else-if="!productStore.checkDataPrices"
-        text="Введите стоимость!"
-    />
-    <CardDialog
-        v-else
-        text="Отметьте пользователей во всех продуктах!"
-    />
+        <CardDialog
+            v-else-if="!productStore.checkDataTitles"
+            text="Назовите все продукты!"
+        />
+        <CardDialog
+            v-else-if="!productStore.checkDataPrices"
+            text="Введите стоимость!"
+        />
+        <CardDialog
+            v-else
+            text="Отметьте пользователей во всех продуктах!"
+        />
+    </div>
 </template>

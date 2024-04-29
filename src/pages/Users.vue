@@ -8,7 +8,7 @@ const userStore = useUserStore();
 
 <template>
     <v-sheet
-        class="rounded-lg mb-6"
+        class="rounded-lg mt-12 mb-6"
         elevation="10"
     >
         <UserList />
