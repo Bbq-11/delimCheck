@@ -1,5 +1,5 @@
 <script setup>
-import { mdiCheck } from '@mdi/js';
+import { mdiAllInclusive, mdiCheckAll } from '@mdi/js';
 import { useProductStore } from '../stores/ProductStore.js';
 
 const productStore = useProductStore();
@@ -13,11 +13,6 @@ const props = defineProps({
         payer: String,
         users: Array,
     },
-    user: {
-        type: Object,
-        id: Number,
-        username: String,
-    },
 });
 </script>
 
@@ -30,19 +25,16 @@ const props = defineProps({
             class="d-flex flex-column justify-center align-center border-sm rounded-lg pa-2 ma-0"
         >
             <v-avatar
-                v-if="productStore.checkUser(props.product.id, props.user.id)"
+                v-if="productStore.checkCountUsers(props.product.id)"
                 class="text-h5 text-uppercase font-weight-bold text-primary bg-surface"
-                :icon="mdiCheck"
+                :icon="mdiCheckAll"
             />
             <v-avatar
                 v-else
                 class="text-h5 text-uppercase font-weight-bold text-primary bg-background"
-            >
-                {{ props.user?.username.charAt(0).toUpperCase() }}
-            </v-avatar>
-            <v-card-text class="pa-0 mt-2">
-                {{ props.user.username }}
-            </v-card-text>
+                :icon="mdiAllInclusive"
+            />
+            <v-card-text class="pa-0 mt-2"> Все </v-card-text>
         </v-card>
     </v-col>
 </template>

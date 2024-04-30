@@ -29,12 +29,36 @@ export const useProductStore = defineStore('productStore', () => {
             else product.users.splice(checkUser, 1);
         };
     });
+    const addAllUserProduct = computed(() => {
+        return (productId) => {
+            const productStore = useProductStore();
+            const product = productStore.getProductById(productId);
+            const countActiveUsers = product.users.length;
+            const userStore = useUserStore();
+            const countAllUsers = userStore.totalCountUsers;
+            if (countActiveUsers === countAllUsers) {
+                product.users.splice(0, product.users.length);
+            } else {
+                product.users.splice(0, product.users.length);
+                userStore.users.forEach((user) => product.users.push(user.id));
+            }
+        };
+    });
     const getProductById = computed(() => {
         return (productId) => {
             return products.value.find((item) => item.id === productId);
         };
     });
-
+    const checkCountUsers = computed(() => {
+        return (productId) => {
+            const productStore = useProductStore();
+            const product = productStore.getProductById(productId);
+            const countActiveUsers = product.users.length;
+            const userStore = useUserStore();
+            const countAllUsers = userStore.totalCountUsers;
+            return countActiveUsers === countAllUsers;
+        };
+    });
     const checkUser = computed(() => {
         return (productId, userId, product = undefined) => {
             if (!product) {
@@ -88,9 +112,11 @@ export const useProductStore = defineStore('productStore', () => {
         addProduct,
         removeProduct,
         copyProduct,
+        checkCountUsers,
         checkUser,
         getProductById,
         addUserProduct,
+        addAllUserProduct,
         totalCountProducts,
         checkDataTitles,
         checkDataPrices,

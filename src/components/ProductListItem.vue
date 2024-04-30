@@ -6,6 +6,7 @@ import { useProductStore } from '../stores/ProductStore.js';
 import { useUserStore } from '../stores/UserStore.js';
 import DialogPayer from './DialogPayer.vue';
 import ProductUsers from './ProductUsers.vue';
+import ProductAllUsers from './ProductAllUsers.vue';
 
 const productStore = useProductStore();
 const userStore = useUserStore();
@@ -26,9 +27,9 @@ const props = defineProps({
 
 const rules = {
     email: (value) => {
-        // const pattern = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
-        const pattern2 = /^\d+$/;
-        return pattern2.test(value) || 'Ошибочка.';
+        // const pattern2 = /^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
+        const pattern2 = /^[1-9]\d*$/;
+        return pattern2.test(value);
     },
 };
 </script>
@@ -90,6 +91,10 @@ const rules = {
                 class="gr-2 gc-2 overflow-y-auto scroll-container h-100"
                 no-gutters
             >
+                <ProductAllUsers
+                    :product="props.product"
+                    @click="productStore.addAllUserProduct(props.product.id)"
+                />
                 <ProductUsers
                     v-for="user in userStore.users"
                     :key="user.id"
