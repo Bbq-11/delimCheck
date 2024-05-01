@@ -46,7 +46,7 @@ export const useUserStore = defineStore('userStore', () => {
         );
         activeProducts.forEach((item) => {
             const amount = +(item.price / item.users.length).toFixed(2);
-            if (user.transactions.has(item.id))
+            if (user.transactions.has(item.payer.id))
                 user.transactions.set(item.payer.id, user.transactions.get(item.payer.id) + amount);
             else user.transactions.set(item.payer.id, amount);
         });

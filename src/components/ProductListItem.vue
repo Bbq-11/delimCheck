@@ -37,16 +37,16 @@ const rules = {
     <v-expansion-panel>
         <v-expansion-panel-title>
             <v-row
-                class="gc-8"
+                class="gc-8 mr-4"
                 no-gutters
             >
-                <v-col cols="7">
+                <v-col>
                     <v-text-field
                         label="Название"
                         v-model.trim="title"
                     />
                 </v-col>
-                <v-col cols="4">
+                <v-col>
                     <v-text-field
                         label="Цена"
                         type="number"

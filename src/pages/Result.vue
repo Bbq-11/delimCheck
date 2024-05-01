@@ -35,7 +35,7 @@ onBeforeMount(() => {
             v-model="tab"
             align-tabs="center"
             color="primary"
-            class="border-b-sm mb-6"
+            class="border-b-sm mb-2"
             fixed-tabs
         >
             <v-tab value="1">Кто - кому</v-tab>

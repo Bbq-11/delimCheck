@@ -23,16 +23,21 @@ onMounted(() => {
         :transactions="user.transactions"
     >
         <div class="mt-2 border-b-sm">
-            <v-card-title> Пользователь {{ user.username }} должен </v-card-title>
-            <v-card-text>
+            <v-card-title class="text-h5 font-weight-bold mb-2"> Пользователь {{ user.username }} должен </v-card-title>
+            <v-card-text class="text-subtitle-1">
                 <div
+                    class="mb-1"
                     v-if="user.creditors.size"
                     v-for="creditor in user.creditors"
                 >
                     {{ creditor.join(' - ') }}
                 </div>
-                <div v-else>
+                <div
+                    class="mb-1"
+                    v-else
+                >
                     <v-icon
+                        class="mb-2"
                         :icon="mdiThumbUpOutline"
                         size="40"
                     />
