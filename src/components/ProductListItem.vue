@@ -78,8 +78,9 @@ const rules = {
                 </v-col>
                 <v-col>
                     <v-btn
-                        class="w-100 border-sm rounded-xl"
+                        class="w-100 rounded-xl"
                         color="error"
+                        variant="tonal"
                         @click="productStore.removeProduct(props.product.id)"
                     >
                         <v-icon :icon="mdiDeleteOutline" />
