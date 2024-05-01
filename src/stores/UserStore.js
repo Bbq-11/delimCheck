@@ -7,12 +7,12 @@ export const useUserStore = defineStore('userStore', () => {
         {
             id: 1,
             username: 'Илья',
-            creditors: new Map([[2, 2]]),
+            creditors: new Map(),
         },
         {
             id: 2,
             username: 'Егор',
-            creditors: new Map([[1, 2]]),
+            creditors: new Map(),
         },
     ]);
 
@@ -29,20 +29,21 @@ export const useUserStore = defineStore('userStore', () => {
     });
 
     const fillCreditors = computed(() => {
-        return (userId) => {
+        return (user) => {
             const storeProduct = useProductStore();
             const activeProducts = storeProduct.products.filter(
                 (item) =>
-                    item.users.find((item) => item === userId) && item.payer !== userId,
+                    item.users.find((item) => item === user.id) &&
+                    item.payer !== user.username,
             );
             activeProducts.forEach((item) => {
-                const count = item.price / item.users.length;
-                if (users[userId].creditors.has(item.payer))
-                    users[userId].creditors.set(
+                const count = +(item.price / item.users.length).toFixed(2);
+                if (user.creditors.has(item.payer))
+                    user.creditors.set(
                         item.payer,
-                        users[userId].creditors.get(item.payer) + count,
+                        user.creditors.get(item.payer) + count,
                     );
-                else users[userId].creditors.set(item.payer, count);
+                else user.creditors.set(item.payer, count);
             });
         };
     });

@@ -9,14 +9,14 @@ export const useProductStore = defineStore('productStore', () => {
             title: 'Рыба',
             price: 100,
             payer: 'Илья',
-            users: [1],
+            users: [2],
         },
         {
             id: 2,
             title: 'Картошка',
             price: 200,
             payer: 'Егор',
-            users: [1, 2],
+            users: [1],
         },
     ]);
 

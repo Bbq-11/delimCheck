@@ -1,5 +1,6 @@
 <script setup>
 import { useUserStore } from '../stores/UserStore.js';
+import { onMounted } from 'vue';
 // import { mdiThumbUpOutline } from '@mdi/js';
 
 const userStore = useUserStore();
@@ -13,6 +14,10 @@ const props = defineProps({
         required: true,
     },
 });
+
+onMounted(() => {
+    userStore.fillCreditors(props.user);
+});
 </script>
 
 <template>
@@ -22,12 +27,11 @@ const props = defineProps({
         max-width="600px"
     >
         <v-card-title class="text-h5 font-weight-bold">
-            Пользователь Андрей должен
+            Пользователю {{ props.user.username }} должны
         </v-card-title>
         <v-card-text class="text-subtitle-1 text-primary font-weight-bold">
-            <p>Илья - 12 ₽</p>
             <p>
-                {{ props.user.creditors.size }}
+                {{ props.user.creditors }}
             </p>
             <!--            <div>-->
             <!--                <v-icon-->
