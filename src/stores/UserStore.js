@@ -7,12 +7,16 @@ export const useUserStore = defineStore('userStore', () => {
         {
             id: 1,
             username: 'Илья',
+            transactions: new Map([]),
             creditors: new Map(),
+            debtors: new Map(),
         },
         {
             id: 2,
             username: 'Егор',
+            transactions: new Map([]),
             creditors: new Map(),
+            debtors: new Map(),
         },
     ]);
 
@@ -28,41 +32,61 @@ export const useUserStore = defineStore('userStore', () => {
         // return uniqueNames.size !== users.value.length;
     });
 
-    const fillCreditors = computed(() => {
-        return (user) => {
-            const storeProduct = useProductStore();
-            const activeProducts = storeProduct.products.filter(
-                (item) =>
-                    item.users.find((item) => item === user.id) &&
-                    item.payer.id !== user.id,
-            );
-            activeProducts.forEach((item) => {
-                const count = +(item.price / item.users.length).toFixed(2);
-                if (user.creditors.has(item.id))
-                    user.creditors.set(
-                        item.payer.id,
-                        user.creditors.get(item.payer.id) + count,
-                    );
-                else user.creditors.set(item.payer.id, count);
-            });
-        };
-    });
+    const fillTransactions = (user) => {
+        const storeProduct = useProductStore();
+        const activeProducts = storeProduct.products.filter(
+            (item) =>
+                item.users.find((item) => item === user.id) && item.payer.id !== user.id,
+        );
+        activeProducts.forEach((item) => {
+            const count = +(item.price / item.users.length).toFixed(2);
+            if (user.transactions.has(item.id))
+                user.transactions.set(
+                    item.payer.id,
+                    user.transactions.get(item.payer.id) + count,
+                );
+            else user.transactions.set(item.payer.id, count);
+        });
+    };
+    const clearTransactions = () => {
+        users.value.forEach((item) => {
+            item.transactions.clear();
+        });
+    };
+
     const komyKto = computed(() => {
         return (user) => {
-            if (user.creditors.size === 0) return '';
-            user.creditors.forEach((value, key) => alert(key));
-            //     const userStore = useUserStore();
-            //     const deb = userStore.getUserById(key);
-            //     if (deb.creditors.has(user.id)) return value;
-            //     else {
-            //         const we = deb.creditors.get(user.id);
-            //         const he = user.creditors.get(key);
-            //         if (we < he) return we - he;
-            //         else return 0;
-            //     }
-            // });
+            const resultDebs = new Map();
+            if (user.creditors.size === 0) return resultDebs;
+            user.creditors.forEach((value, key) => {
+                const userStore = useUserStore();
+                const deb = userStore.getUserById(key);
+                if (!deb.creditors.has(user.id)) resultDebs.set(key, value);
+                else {
+                    const we = deb.creditors.get(user.id);
+                    const he = user.creditors.get(key);
+                    if (he < we) resultDebs.set(key, we - he);
+                }
+            });
+            return resultDebs;
         };
     });
+    // const komyKto = computed(() => {
+    //     return (user, debs) => {
+    //         // user.creditors.forEach((value, key) => alert(key));
+    //         const userStore = useUserStore();
+    //         const userDeb = userStore.getUserById(debs[0]);
+    //         if (!userDeb.creditors.has(user.id))
+    //             return `${userDeb.username} - ${debs[1]}`;
+    //         else {
+    //             const we = userDeb.creditors.get(user.id);
+    //             const he = user.creditors.get(debs[0]);
+    //             if (he < we) return `${userDeb.username} - ${we - he}`;
+    //             else return 0;
+    //         }
+    //         // });
+    //     };
+    // });
     const ktoKomy = computed(() => {});
     const getUserById = computed(() => {
         return (userId) => {
@@ -73,6 +97,8 @@ export const useUserStore = defineStore('userStore', () => {
         users.value.push({
             id: Date.now(),
             username: '',
+            transactions: new Map(),
+            creditors: new Map(),
             debtors: new Map(),
         });
     };
@@ -84,10 +110,11 @@ export const useUserStore = defineStore('userStore', () => {
         users,
         totalCountUsers,
         checkDataUsers,
-        fillCreditors,
+        fillTransactions,
         komyKto,
         getUserById,
         addUser,
         removeUser,
+        clearTransactions,
     };
 });

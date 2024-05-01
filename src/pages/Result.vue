@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import noName from '../components/noName.vue';
 import { useUserStore } from '../stores/UserStore.js';
+import noName2 from '../components/noName2.vue';
 
 const userStore = useUserStore();
 
@@ -14,6 +14,10 @@ const handleReset = () => {
     // productStore.products = [];
     // billStore.bill = [];
 };
+
+onBeforeMount(() => {
+    userStore.clearTransactions();
+});
 </script>
 
 <template>
@@ -38,22 +42,20 @@ const handleReset = () => {
                 elevation="20"
                 class="mb-8"
             >
-                <noName
-                    v-for="user in userStore.users"
-                    :key="user.id"
-                    :user="user"
-                />
+                <noName2 />
+                <!--                <noName1-->
+                <!--                    v-for="user in userStore.users"-->
+                <!--                    :key="user.id"-->
+                <!--                    :user="user"-->
+                <!--                    :creditors="user.creditors"-->
+                <!--                />-->
             </v-window-item>
             <v-window-item
                 value="2"
                 elevation="20"
                 class="mb-8"
             >
-                <noName
-                    v-for="user in userStore.users"
-                    :key="user.id"
-                    :user="user"
-                />
+                <noName2 />
             </v-window-item>
         </v-window>
     </v-sheet>
