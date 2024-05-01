@@ -27,7 +27,7 @@ const switchActive = () => (isActive.value = !isActive.value);
         color="primary"
         :prepend-icon="mdiWalletOutline"
         @click="switchActive"
-        :text="props.product.payer"
+        :text="props.product.payer.username"
     />
     <template>
         <v-dialog
@@ -76,7 +76,7 @@ const switchActive = () => (isActive.value = !isActive.value);
                                     <v-spacer />
                                     <v-col cols="auto">
                                         <v-radio
-                                            :value="user.username"
+                                            :value="user"
                                             @click="switchActive"
                                         >
                                         </v-radio>

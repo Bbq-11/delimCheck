@@ -10,7 +10,7 @@ const props = defineProps({
         id: Number,
         title: String,
         price: Number,
-        payer: String,
+        payer: Object,
         users: Array,
     },
 });

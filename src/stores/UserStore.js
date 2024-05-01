@@ -34,16 +34,16 @@ export const useUserStore = defineStore('userStore', () => {
             const activeProducts = storeProduct.products.filter(
                 (item) =>
                     item.users.find((item) => item === user.id) &&
-                    item.payer !== user.username,
+                    item.payer.id !== user.id,
             );
             activeProducts.forEach((item) => {
                 const count = +(item.price / item.users.length).toFixed(2);
-                if (user.creditors.has(item.payer))
+                if (user.creditors.has(item.id))
                     user.creditors.set(
-                        item.payer,
-                        user.creditors.get(item.payer) + count,
+                        item.payer.id,
+                        user.creditors.get(item.payer.id) + count,
                     );
-                else user.creditors.set(item.payer, count);
+                else user.creditors.set(item.payer.id, count);
             });
         };
     });

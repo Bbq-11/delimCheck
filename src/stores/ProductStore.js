@@ -8,14 +8,14 @@ export const useProductStore = defineStore('productStore', () => {
             id: 1,
             title: 'Рыба',
             price: 100,
-            payer: 'Илья',
-            users: [2],
+            payer: { id: 1, username: 'Илья' },
+            users: [1, 2],
         },
         {
             id: 2,
             title: 'Картошка',
             price: 200,
-            payer: 'Егор',
+            payer: { id: 2, username: 'Егор' },
             users: [1, 2],
         },
     ]);
@@ -79,7 +79,7 @@ export const useProductStore = defineStore('productStore', () => {
             id: Date.now(),
             title: '',
             price: '',
-            payer: userStore.users[0].username,
+            payer: userStore.users[0],
             users: [],
         });
     };

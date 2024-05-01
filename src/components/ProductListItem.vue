@@ -20,7 +20,7 @@ const props = defineProps({
         id: Number,
         title: String,
         price: Number,
-        payer: String,
+        payer: Object,
         users: Array,
     },
 });
@@ -80,7 +80,6 @@ const rules = {
                     <v-btn
                         class="w-100 rounded-xl"
                         color="error"
-                        variant="tonal"
                         @click="productStore.removeProduct(props.product.id)"
                     >
                         <v-icon :icon="mdiDeleteOutline" />
