@@ -47,7 +47,28 @@ export const useUserStore = defineStore('userStore', () => {
             });
         };
     });
-
+    const komyKto = computed(() => {
+        return (user) => {
+            if (user.creditors.size === 0) return '';
+            user.creditors.forEach((value, key) => alert(key));
+            //     const userStore = useUserStore();
+            //     const deb = userStore.getUserById(key);
+            //     if (deb.creditors.has(user.id)) return value;
+            //     else {
+            //         const we = deb.creditors.get(user.id);
+            //         const he = user.creditors.get(key);
+            //         if (we < he) return we - he;
+            //         else return 0;
+            //     }
+            // });
+        };
+    });
+    const ktoKomy = computed(() => {});
+    const getUserById = computed(() => {
+        return (userId) => {
+            return users.value.find((item) => item?.id === userId);
+        };
+    });
     const addUser = () => {
         users.value.push({
             id: Date.now(),
@@ -64,6 +85,8 @@ export const useUserStore = defineStore('userStore', () => {
         totalCountUsers,
         checkDataUsers,
         fillCreditors,
+        komyKto,
+        getUserById,
         addUser,
         removeUser,
     };

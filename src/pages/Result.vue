@@ -49,19 +49,11 @@ const handleReset = () => {
                 elevation="20"
                 class="mb-8"
             >
-                <v-card
-                    v-for="f in 3"
-                    class="text-center text-primary mx-auto mt-2 border-b-sm"
-                    variant="text"
-                    max-width="600px"
-                >
-                    <v-card-title class="text-h5 font-weight-bold">
-                        Пользователю Андрей должны
-                    </v-card-title>
-                    <v-card-text class="text-subtitle-1 text-primary font-weight-bold">
-                        <p>Илья - 12 ₽</p>
-                    </v-card-text>
-                </v-card>
+                <noName
+                    v-for="user in userStore.users"
+                    :key="user.id"
+                    :user="user"
+                />
             </v-window-item>
         </v-window>
     </v-sheet>

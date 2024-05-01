@@ -33,6 +33,10 @@ onMounted(() => {
             <p>
                 {{ props.user.creditors }}
             </p>
+            <p>
+                f
+                {{ userStore.komyKto(props.user) }}
+            </p>
             <!--            <div>-->
             <!--                <v-icon-->
             <!--                    :icon="mdiThumbUpOutline"-->

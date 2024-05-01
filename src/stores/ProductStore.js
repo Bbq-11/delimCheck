@@ -16,7 +16,7 @@ export const useProductStore = defineStore('productStore', () => {
             title: 'Картошка',
             price: 200,
             payer: 'Егор',
-            users: [1],
+            users: [1, 2],
         },
     ]);
 
