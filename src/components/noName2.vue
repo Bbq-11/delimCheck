@@ -1,19 +1,18 @@
 <script setup>
 import { useUserStore } from '../stores/UserStore.js';
-import { mdiThumbUpOutline } from '@mdi/js';
-import { onBeforeMount } from 'vue';
+import { onMounted } from 'vue';
 
 const userStore = useUserStore();
-onBeforeMount(() => {
+onMounted(() => {
     for (const user of userStore.users) {
-        userStore.fillTransactions(user);
+        userStore.fillDebtors(user);
     }
 });
 </script>
 
 <template>
     <v-card
-        class="text-center text-primary mx-auto mt-2 border-b-sm"
+        class="text-center text-primary mx-auto mb-0"
         variant="text"
         max-width="600px"
         v-for="user in userStore.users"
@@ -22,24 +21,19 @@ onBeforeMount(() => {
         :transactions="user.transactions"
     >
         <div
-            v-if="user.transactions.size"
-            v-for="bb in user.transactions"
-            :key="Date.now()"
+            class="mt-2 border-b-sm"
+            v-if="user.transactions.size && user.debtors.size"
         >
-            f
-            {{ bb }}
+            <v-card-title> Пользователю {{ user.username }} должны </v-card-title>
+            <v-card-text>
+                <div
+                    v-if="user.debtors.size"
+                    v-for="debtor in user.debtors"
+                >
+                    {{ debtor.join(' - ') }}
+                </div>
+            </v-card-text>
         </div>
-        <div v-else>
-            <v-icon
-                :icon="mdiThumbUpOutline"
-                size="40"
-            />
-            <p>А никому он ничего не должен. Живет как хочет!</p>
-        </div>
-        <!--                <div v-if="userStore.komyKto(user).size">-->
-        <!--                    <v-card-title> Пользователю {{ user.username }} должны </v-card-title>-->
-        <!--                    <v-card-text> </v-card-text>-->
-        <!--                </div>-->
     </v-card>
 </template>
 

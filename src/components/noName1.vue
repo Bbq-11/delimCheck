@@ -1,60 +1,57 @@
 <script setup>
 import { useUserStore } from '../stores/UserStore.js';
+import { onMounted } from 'vue';
+
 import { mdiThumbUpOutline } from '@mdi/js';
 
 const userStore = useUserStore();
-
-const props = defineProps({
-    user: {
-        type: Object,
-        id: Number,
-        username: String,
-        creditors: Object,
-        required: true,
-    },
-    creditors: {
-        type: Object,
-        required: true,
-    },
+onMounted(() => {
+    for (const user of userStore.users) {
+        userStore.fillCreditors(user);
+    }
 });
 </script>
 
 <template>
     <v-card
-        class="text-center text-primary mx-auto mt-2 border-b-sm"
+        class="text-center text-primary mx-auto mb-0"
         variant="text"
         max-width="600px"
+        v-for="user in userStore.users"
+        :key="user.id"
+        :user="user"
+        :transactions="user.transactions"
     >
-        <v-card-title class="text-h5 font-weight-bold">
-            Пользователь {{ props.user.username }} должен
-        </v-card-title>
-        <v-card-text class="text-subtitle-1 text-primary font-weight-bold">
-            <div v-if="props.creditors.size">
+        <div
+            class="mt-2 border-b-sm"
+            v-if="user.transactions.size"
+        >
+            <v-card-title> Пользователь {{ user.username }} должен </v-card-title>
+            <v-card-text>
                 <div
-                    v-for="deb in props.creditors"
-                    :key="deb.key"
+                    v-if="user.creditors.size"
+                    v-for="creditor in user.creditors"
                 >
-                    <div v-if="userStore.komyKto(user, deb)">
-                        {{ userStore.komyKto(user, deb) }}
-                    </div>
-                    <div v-else>
-                        <v-icon
-                            :icon="mdiThumbUpOutline"
-                            size="40"
-                        />
-                        <p>А никому он ничего не должен. Живет как хочет!</p>
-                    </div>
+                    {{ creditor.join(' - ') }}
                 </div>
-            </div>
-
-            <div v-else>
+                <div v-else>
+                    <v-icon
+                        :icon="mdiThumbUpOutline"
+                        size="40"
+                    />
+                    <p>А никому он ничего не должен. Живет как хочет!</p>
+                </div>
+            </v-card-text>
+        </div>
+        <div v-else>
+            <v-card-title>
                 <v-icon
                     :icon="mdiThumbUpOutline"
                     size="40"
                 />
-                <p>А никому он ничего не должен. Живет как хочет!</p>
-            </div>
-        </v-card-text>
+                <p>А никто никому ничего не должен. Живут как хотят!</p>
+            </v-card-title>
+        </div>
     </v-card>
 </template>
 

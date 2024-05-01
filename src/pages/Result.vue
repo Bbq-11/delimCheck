@@ -3,26 +3,31 @@ import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/UserStore.js';
 import noName2 from '../components/noName2.vue';
+import noName1 from '../components/noName1.vue';
+import { useProductStore } from '../stores/ProductStore.js';
 
 const userStore = useUserStore();
+const productStore = useProductStore();
 
 const router = useRouter();
 const tab = ref('byDebtor');
 const handleReset = () => {
     router.push('/');
-    // userStore.users = [];
-    // productStore.products = [];
-    // billStore.bill = [];
+    userStore.users = [];
+    productStore.products = [];
 };
 
 onBeforeMount(() => {
     userStore.clearTransactions();
+    for (const user of userStore.users) {
+        userStore.fillTransactions(user);
+    }
 });
 </script>
 
 <template>
     <v-sheet
-        class="mb-6 mt-12"
+        class="mb-6 mt-12 pb-8"
         elevation="10"
         rounded="lg"
     >
@@ -36,24 +41,19 @@ onBeforeMount(() => {
             <v-tab value="1">Кто - кому</v-tab>
             <v-tab value="2">Кому - кто</v-tab>
         </v-tabs>
-        <v-window v-model="tab">
+        <v-window
+            class="mb-18"
+            v-model="tab"
+        >
             <v-window-item
                 value="1"
                 elevation="20"
-                class="mb-8"
             >
-                <noName2 />
-                <!--                <noName1-->
-                <!--                    v-for="user in userStore.users"-->
-                <!--                    :key="user.id"-->
-                <!--                    :user="user"-->
-                <!--                    :creditors="user.creditors"-->
-                <!--                />-->
+                <noName1 />
             </v-window-item>
             <v-window-item
                 value="2"
                 elevation="20"
-                class="mb-8"
             >
                 <noName2 />
             </v-window-item>
