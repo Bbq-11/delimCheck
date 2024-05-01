@@ -1,6 +1,6 @@
 <script setup>
 import UserList from '../components/UserList.vue';
-import CardDialog from '../components/DialogError.vue';
+import DialogError from '../components/DialogError.vue';
 import { useUserStore } from '../stores/UserStore.js';
 
 const userStore = useUserStore();
@@ -14,7 +14,7 @@ const userStore = useUserStore();
         <UserList />
     </v-sheet>
     <router-link
-        v-if="userStore.totalCountUsers >= 2 && !userStore.checkDataUsers"
+        v-if="userStore.totalCountUsers >= 2 && userStore.checkDataUsers"
         to="/pre-check"
         class="w-100"
     >
@@ -24,12 +24,13 @@ const userStore = useUserStore();
             text="Дальше!"
         />
     </router-link>
-    <CardDialog
+    <DialogError
         v-else-if="userStore.totalCountUsers < 2"
-        text="Добавьте еще кого-нибудь!"
+        title="Добавьте еще кого-нибудь!"
     />
-    <CardDialog
+    <DialogError
         v-else
-        text="Стоить дать всем имена!"
+        title="Стоит дать всем имена!"
+        subtitle="А еще лучше всем разные.."
     />
 </template>

@@ -3,8 +3,13 @@ import { ref } from 'vue';
 import { mdiAlertCircleOutline } from '@mdi/js';
 
 defineProps({
-    text: String,
-    required: true,
+    title: {
+        type: String,
+        required: true,
+    },
+    subtitle: {
+        type: String,
+    },
 });
 
 const isOpen = ref(false);
@@ -12,7 +17,7 @@ const isOpen = ref(false);
 const switchOpen = () => {
     isOpen.value = !isOpen.value;
     if (!isOpen.value) return;
-    setTimeout(() => (isOpen.value = false), 2000);
+    setTimeout(() => (isOpen.value = false), 2500);
 };
 </script>
 
@@ -21,7 +26,6 @@ const switchOpen = () => {
         class="py-4 w-100"
         variant="plain"
         text="Дальше!"
-        elevation="0"
         :disabled="isOpen"
         @click="switchOpen()"
     />
@@ -32,7 +36,7 @@ const switchOpen = () => {
         >
             <v-card
                 class="text-center bg-error py-4 px-6 rounded-lg"
-                elevation="20"
+                elevation="12"
             >
                 <div>
                     <v-icon
@@ -42,7 +46,8 @@ const switchOpen = () => {
                     />
                 </div>
                 <v-card-text class="text-body-1 text-primary">
-                    {{ text }}
+                    <p>{{ title }}</p>
+                    <p>{{ subtitle }}</p>
                 </v-card-text>
             </v-card>
         </v-dialog>

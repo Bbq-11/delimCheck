@@ -1,3 +1,16 @@
+<script setup>
+import { mdiWeatherSunsetDown, mdiWeatherSunsetUp } from '@mdi/js';
+import { ref } from 'vue';
+import { useTheme } from 'vuetify';
+
+const theme = useTheme();
+const dark = ref(false);
+function toggleTheme() {
+    dark.value = !dark.value;
+    theme.global.name.value = dark.value ? 'dark' : 'light';
+}
+</script>
+
 <template>
     <v-app>
         <v-layout class="user-select-hidden">
@@ -27,15 +40,3 @@
         </v-layout>
     </v-app>
 </template>
-<script setup>
-import { mdiWeatherSunsetDown, mdiWeatherSunsetUp } from '@mdi/js';
-import { ref } from 'vue';
-import { useTheme } from 'vuetify';
-
-const theme = useTheme();
-const dark = ref(false);
-function toggleTheme() {
-    dark.value = !dark.value;
-    theme.global.name.value = dark.value ? 'dark' : 'light';
-}
-</script>

@@ -17,21 +17,16 @@ const props = defineProps({
 </script>
 
 <template>
-    <v-col
-        class="pa-0 ma-0"
-        cols="auto"
-    >
-        <v-card
-            class="d-flex flex-column justify-center align-center border-sm rounded-lg pa-2 ma-0"
-        >
+    <v-col cols="auto">
+        <v-card class="d-flex flex-column justify-center align-center border-sm rounded-lg pa-2 ma-0">
             <v-avatar
                 v-if="productStore.checkCountUsers(props.product.id)"
-                class="text-h5 text-uppercase font-weight-bold text-primary bg-surface"
+                class="text-h5 text-uppercase text-primary bg-surface"
                 :icon="mdiCheckAll"
             />
             <v-avatar
                 v-else
-                class="text-h5 text-uppercase font-weight-bold text-primary bg-background"
+                class="text-h5 text-uppercase text-primary bg-background"
                 :icon="mdiAllInclusive"
             />
             <v-card-text class="pa-0 mt-2"> Все </v-card-text>

@@ -26,10 +26,9 @@ const props = defineProps({
 });
 
 const rules = {
-    email: (value) => {
-        // const pattern2 = /^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
-        const pattern2 = /^[1-9]\d*$/;
-        return pattern2.test(value);
+    num: (value) => {
+        const pattern = /^[1-9]\d*$/;
+        return pattern.test(value);
     },
 };
 </script>
@@ -52,7 +51,7 @@ const rules = {
                         label="Цена"
                         type="number"
                         v-model.trim="price"
-                        :rules="[rules.email]"
+                        :rules="[rules.num]"
                     />
                 </v-col>
             </v-row>
@@ -86,9 +85,8 @@ const rules = {
                     </v-btn>
                 </v-col>
             </v-row>
-
             <v-row
-                class="gr-2 gc-2 overflow-y-auto scroll-container h-100"
+                class="py-2 gc-3 flex-nowrap overflow-x-auto scroll-container w-100"
                 no-gutters
             >
                 <ProductAllUsers
@@ -102,41 +100,6 @@ const rules = {
                     :user="user"
                     @click="productStore.addUserProduct(props.product.id, user.id)"
                 />
-                <!--                <v-col v-for="us in 3">-->
-                <!--                    <div class="cursor-pointer">-->
-                <!--                        <div-->
-                <!--                            class="d-flex flex-column align-center border-sm pa-2 rounded-lg ga-1"-->
-                <!--                        >-->
-                <!--                            <v-avatar color="surface-variant">-->
-                <!--                                <div-->
-                <!--                                    class="d-flex w-100 h-100 justify-center align-center bg-primary"-->
-                <!--                                >-->
-                <!--                                    &lt;!&ndash;                                <template v-if="isUser">&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                    <v-icon&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                        v-if="isProduct"&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                        :icon="mdiCheck"&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                    />&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                    <span&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                        v-else&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                        class="text-uppercase"&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                    >&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                        U&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                        &lt;!&ndash;                                                {{ user.name.charAt(0) }}&ndash;&gt;&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                    </span>&ndash;&gt;-->
-                <!--                                    &lt;!&ndash;                                </template>&ndash;&gt;-->
-                <!--                                    <v-icon :icon="mdiAllInclusive" />-->
-                <!--                                </div>-->
-                <!--                            </v-avatar>-->
-                <!--                            <div class="text-subtitle-2">-->
-                <!--                                <span v-if="isUser">-->
-                <!--                                    username-->
-                <!--                                    &lt;!&ndash;                                        {{ user.name }}&ndash;&gt;-->
-                <!--                                </span>-->
-                <!--                                <span v-else>All</span>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </v-col>-->
             </v-row>
         </v-expansion-panel-text>
     </v-expansion-panel>

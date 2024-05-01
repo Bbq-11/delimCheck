@@ -22,10 +22,7 @@ onMounted(() => {
         :user="user"
         :transactions="user.transactions"
     >
-        <div
-            class="mt-2 border-b-sm"
-            v-if="user.transactions.size"
-        >
+        <div class="mt-2 border-b-sm">
             <v-card-title> Пользователь {{ user.username }} должен </v-card-title>
             <v-card-text>
                 <div
@@ -42,15 +39,6 @@ onMounted(() => {
                     <p>А никому он ничего не должен. Живет как хочет!</p>
                 </div>
             </v-card-text>
-        </div>
-        <div v-else>
-            <v-card-title>
-                <v-icon
-                    :icon="mdiThumbUpOutline"
-                    size="40"
-                />
-                <p>А никто никому ничего не должен. Живут как хотят!</p>
-            </v-card-title>
         </div>
     </v-card>
 </template>

@@ -1,13 +1,13 @@
 <script setup>
 import { mdiAutorenew, mdiPlusCircleOutline } from '@mdi/js';
-import UserListItem from './UserListItem.vue';
 import { useUserStore } from '../stores/UserStore.js';
+import UserListItem from './UserListItem.vue';
 
 const userStore = useUserStore();
 </script>
 
 <template>
-    <div class="border-b-sm d-flex justify-space-around py-4 mb-2">
+    <div class="border-b-sm d-flex justify-center py-4 mb-2">
         <v-btn-primary
             class="py-2 px-5"
             :prepend-icon="mdiPlusCircleOutline"
@@ -17,7 +17,7 @@ const userStore = useUserStore();
     </div>
     <v-card
         class="scroll-container overflow-y-auto mb-1 mr-1"
-        height="350"
+        height="320px"
         variant="text"
     >
         <v-card-text v-if="userStore.totalCountUsers">
@@ -30,17 +30,15 @@ const userStore = useUserStore();
         </v-card-text>
         <v-card-text
             v-else
-            class="d-flex justify-center align-center text-center fill-height"
+            class="d-flex flex-column justify-center align-center text-center fill-height gr-6"
         >
-            <div>
-                <v-icon
-                    size="80"
-                    :icon="mdiAutorenew"
-                />
-                <div class="text-subtitle-1 text-primary">
-                    <p>Пока что пусто..</p>
-                    <p>Давай добавим кого-нибудь!</p>
-                </div>
+            <v-icon
+                size="80"
+                :icon="mdiAutorenew"
+            />
+            <div class="text-subtitle-1 text-primary">
+                <p>Пока что пусто..</p>
+                <p>Давайте добавим кого-нибудь!</p>
             </div>
         </v-card-text>
     </v-card>
