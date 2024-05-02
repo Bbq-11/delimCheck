@@ -39,18 +39,22 @@ const productStore = useProductStore();
             />
         </router-link>
         <DialogError
+            class="w-100"
             v-else-if="!productStore.totalCountProducts"
             title="Добавьте что-нибудь!"
         />
         <DialogError
+            class="w-100"
             v-else-if="!productStore.checkDataTitles"
             title="Назовите все продукты!"
         />
         <DialogError
+            class="w-100"
             v-else-if="!productStore.checkDataPrices"
             title="Введите стоимость для всех продуктов!"
         />
         <DialogError
+            class="w-100"
             v-else
             title="Отметьте пользователей во всех продуктах!"
         />

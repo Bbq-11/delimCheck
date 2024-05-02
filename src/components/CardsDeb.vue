@@ -22,7 +22,7 @@ onMounted(() => {
     >
         <div
             class="mt-2 border-b-sm text-center"
-            v-if="user.transactions.size && user.debtors.size"
+            v-if="user.debtors.size"
         >
             <v-card-title class="text-h5 font-weight-bold mb-2"> Пользователю {{ user.username }} должны </v-card-title>
             <v-card-text class="text-subtitle-1">

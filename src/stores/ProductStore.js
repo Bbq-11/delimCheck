@@ -3,45 +3,33 @@ import { computed, ref } from 'vue';
 import { useUserStore } from './UserStore.js';
 
 export const useProductStore = defineStore('productStore', () => {
-    const products = ref([
-        {
-            id: 1,
-            title: 'Рыба',
-            price: 100,
-            payer: { id: 1, username: 'Илья' },
-            users: [1, 2],
-        },
-        {
-            id: 2,
-            title: 'Картошка',
-            price: 200,
-            payer: { id: 2, username: 'Егор' },
-            users: [1, 2],
-        },
-    ]);
+    const products = ref([]);
+
+    const getProductById = computed(() => (productId) => products.value.find((item) => item?.id === productId));
+    const subtotal = computed(() => products.value.reduce((total, item) => total + +item?.price, 0));
+    const totalCountProducts = computed(() => products.value.length);
+    const checkDataTitles = computed(() => !products.value.find((item) => item?.title.length === 0));
+    const checkDataPrices = computed(() => !products.value.find((item) => item?.price.length === 0));
+    const checkDataUsers = computed(() => !products.value.find((item) => item?.users.length === 0));
 
     const addUserProduct = computed(() => {
         return (productId, userId) => {
             const productStore = useProductStore();
             const product = productStore.getProductById(productId);
-            const checkUser = product?.users.indexOf(userId);
-            if (checkUser === -1) product?.users.push(userId);
-            else product?.users.splice(checkUser, 1);
+            const indexUser = product?.users.indexOf(userId);
+            if (indexUser === -1) product?.users.push(userId);
+            else product?.users.splice(indexUser, 1);
         };
     });
     const addAllUserProduct = computed(() => {
         return (productId) => {
             const productStore = useProductStore();
+            const userStore = useUserStore();
             const product = productStore.getProductById(productId);
             const countActiveUsers = product?.users.length;
-            const userStore = useUserStore();
             const countAllUsers = userStore.totalCountUsers;
-            if (countActiveUsers === countAllUsers) {
-                product?.users.splice(0, product?.users.length);
-            } else {
-                product?.users.splice(0, product?.users.length);
-                userStore.users.forEach((user) => product?.users.push(user.id));
-            }
+            product?.users.splice(0, product?.users.length);
+            if (countActiveUsers !== countAllUsers) userStore.users.forEach((user) => product?.users.push(user.id));
         };
     });
     const checkCountUsers = computed(() => {
@@ -55,20 +43,12 @@ export const useProductStore = defineStore('productStore', () => {
         };
     });
     const checkUser = computed(() => {
-        return (productId, userId, product = undefined) => {
-            if (!product) {
-                const productStore = useProductStore();
-                product = productStore.getProductById(productId);
-            }
-            return product.users.includes(userId);
+        return (productId, userId) => {
+            const productStore = useProductStore();
+            const product = productStore.getProductById(productId);
+            return product?.users.includes(userId);
         };
     });
-    const getProductById = computed(() => (productId) => products.value.find((item) => item?.id === productId));
-    const subtotal = computed(() => products.value.reduce((total, item) => total + +item.price, 0));
-    const totalCountProducts = computed(() => products.value.length);
-    const checkDataTitles = computed(() => !products.value.find((item) => item?.title.length === 0));
-    const checkDataPrices = computed(() => !products.value.find((item) => item?.price.length === 0));
-    const checkDataUsers = computed(() => !products.value.find((item) => item?.users.length === 0));
 
     const addProduct = () => {
         const userStore = useUserStore();
@@ -80,16 +60,15 @@ export const useProductStore = defineStore('productStore', () => {
             users: [],
         });
     };
-    const removeProduct = (id) => (products.value = products.value.filter((item) => item.id !== id));
+    const removeProduct = (id) => (products.value = products.value.filter((item) => item?.id !== id));
     const copyProduct = (id) => {
         const productStore = useProductStore();
         const product = productStore.getProductById(id);
-        const newItem = {
+        products.value.push({
             ...product,
             id: Date.now(),
-            users: [...product.users],
-        };
-        products.value.push(newItem);
+            users: [...product?.users],
+        });
     };
 
     return {
@@ -98,15 +77,15 @@ export const useProductStore = defineStore('productStore', () => {
         addProduct,
         removeProduct,
         copyProduct,
-        checkCountUsers,
-        checkUser,
         getProductById,
-        addUserProduct,
-        addAllUserProduct,
         totalCountProducts,
         checkDataTitles,
         checkDataPrices,
         checkDataUsers,
         subtotal,
+        addUserProduct,
+        addAllUserProduct,
+        checkCountUsers,
+        checkUser,
     };
 });
