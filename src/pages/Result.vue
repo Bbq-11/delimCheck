@@ -2,8 +2,8 @@
 import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/UserStore.js';
-import noName2 from '../components/noName2.vue';
-import noName1 from '../components/noName1.vue';
+import CardsDeb from '../components/CardsDeb.vue';
+import CardsCredit from '../components/CardsCredit.vue';
 import { useProductStore } from '../stores/ProductStore.js';
 
 const userStore = useUserStore();
@@ -33,29 +33,20 @@ onBeforeMount(() => {
     >
         <v-tabs
             v-model="tab"
+            class="border-b-sm mb-4"
             align-tabs="center"
             color="primary"
-            class="border-b-sm mb-2"
             fixed-tabs
         >
             <v-tab value="1">Кто - кому</v-tab>
             <v-tab value="2">Кому - кто</v-tab>
         </v-tabs>
-        <v-window
-            class="mb-18"
-            v-model="tab"
-        >
-            <v-window-item
-                value="1"
-                elevation="20"
-            >
-                <noName1 />
+        <v-window v-model="tab">
+            <v-window-item value="1">
+                <CardsCredit />
             </v-window-item>
-            <v-window-item
-                value="2"
-                elevation="20"
-            >
-                <noName2 />
+            <v-window-item value="2">
+                <CardsDeb />
             </v-window-item>
         </v-window>
     </v-sheet>
@@ -64,7 +55,7 @@ onBeforeMount(() => {
         class="w-100"
     >
         <v-btn-primary
-            class="py-4 w-100 mb-6"
+            class="py-4 w-100 mb-10"
             elevation="10"
             text="К результатам!"
             @click="handleReset"

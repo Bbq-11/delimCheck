@@ -45,7 +45,7 @@ export default createVuetify({
                     primary: colors.lightGreen.lighten4,
                     secondary: colors.lightGreen.lighten5,
                     'surface-variant': colors.lightGreen.lighten1,
-                    error: colors.orange.darken1,
+                    error: '#d0733b',
                 },
             },
         },

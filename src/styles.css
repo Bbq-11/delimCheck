@@ -38,10 +38,6 @@ a {
   font-family: "Open Sans", sans-serif !important;
 }
 
-.v-card:last-child {
-  border-bottom: none !important;
-}
-
 .width-app {
   max-width: 780px;
 }
